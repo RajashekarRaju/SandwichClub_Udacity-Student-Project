@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.developersbreach.sandwichclub.AppExecutors;
 import com.developersbreach.sandwichclub.R;
 
@@ -18,17 +17,24 @@ import java.util.List;
 
 public class SandwichAdapter extends RecyclerView.Adapter<SandwichAdapter.SandwichViewHolder> {
 
-    private Context mContext;
-    private List<Sandwich> mSandwichList;
-    private SandwichAdapterListener mListener;
+    // Context to access our resources
+    private final Context mContext;
+    // List of sandwich objects, create and return the elements
+    private final List<Sandwich> mSandwichList;
+    // Declaring custom listener for all click events
+    private final SandwichAdapterListener mListener;
+    // ViewModel to get all data from class
+    private final SandwichListFragmentViewModel mViewModel;
 
     /**
-     * Constructor for our adapter class
+     * Constructor for adapter class
      */
-    SandwichAdapter(Context context, List<Sandwich> sandwichList, SandwichAdapterListener listener) {
+    SandwichAdapter(Context context, List<Sandwich> sandwichList, SandwichAdapterListener listener,
+                    SandwichListFragmentViewModel viewModel) {
         this.mContext = context;
         this.mSandwichList = sandwichList;
         this.mListener = listener;
+        this.mViewModel = viewModel;
     }
 
     /**
@@ -43,20 +49,20 @@ public class SandwichAdapter extends RecyclerView.Adapter<SandwichAdapter.Sandwi
      */
     class SandwichViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView mSandwichImageView;
-        private TextView mSandwichNameTextView;
+        // Views which are visible as single item in recycler view
+        final ImageView mSandwichImageView;
+        final TextView mSandwichNameTextView;
+        final View mSandwichBackGroundView;
+        final TextView mSandwichOriginNameTextView;
+        final ImageView mSandwichOriginImageView;
 
-        SandwichViewHolder(@NonNull final View itemView) {
+        private SandwichViewHolder(@NonNull final View itemView) {
             super(itemView);
             mSandwichImageView = itemView.findViewById(R.id.sandwich_image_item_view);
             mSandwichNameTextView = itemView.findViewById(R.id.sandwich_name_item_text_view);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mListener.onSandwichSelected(mSandwichList.get(getAdapterPosition()), itemView);
-                }
-            });
+            mSandwichBackGroundView = itemView.findViewById(R.id.sandwich_back_ground_view);
+            mSandwichOriginNameTextView = itemView.findViewById(R.id.sandwich_origin_item_text_view);
+            mSandwichOriginImageView = itemView.findViewById(R.id.sandwich_origin_item_image_view);
         }
     }
 
@@ -86,14 +92,22 @@ public class SandwichAdapter extends RecyclerView.Adapter<SandwichAdapter.Sandwi
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(@NonNull final SandwichViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final SandwichViewHolder holder, final int position) {
         final Sandwich sandwich = mSandwichList.get(position);
 
+        // Running a executor on main thread and load data from ViewModel of sandwich properties.
         AppExecutors.getInstance().mainThread().execute(new Runnable() {
             @Override
             public void run() {
-                holder.mSandwichNameTextView.setText(sandwich.getSandwichName());
-                Glide.with(mContext).load(sandwich.getSandwichImage()).centerCrop().into(holder.mSandwichImageView);
+                mViewModel.loadSandwichListProperties(mContext, sandwich, holder);
+            }
+        });
+
+        // Set listener using itemView and call onSandwichSelected from declared custom interface
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onSandwichSelected(sandwich, view);
             }
         });
     }

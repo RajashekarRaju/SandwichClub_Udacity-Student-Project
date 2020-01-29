@@ -1,18 +1,14 @@
 <resources>
     <string name="app_name">Sandwich Club</string>
-
-    <string-array name="sandwich_names">
-        <item>Ham and cheese sandwich</item>
-        <item>Bosna</item>
-        <item>Chivito</item>
-        <item>Club sandwich</item>
-        <item>Gua bao</item>
-        <item>Medianoche</item>
-        <item>Pljeskavica</item>
-        <item>Roujiamo</item>
-        <item>Shawarma</item>
-        <item>Vada Pav</item>
-    </string-array>
+    <string name="origin">Origin</string>
+    <string name="tools_description">Good visual design is essential for a successful app, and color
+        schemes are a primary component of design. The palette library is a support library that
+        extracts prominent colors from images to help you create visually engaging apps.
+    </string>
+    <string name="also_known_as_header">Also Known As</string>
+    <string name="ingredients_header">Ingredients</string>
+    <string name="sample_ingredient">chilli peppers</string>
+    <string name="name_not_available">Not Available</string>
 
     <string-array name="sandwich_details">
         <item>{\"name\":{\"mainName\":\"Ham and cheese
