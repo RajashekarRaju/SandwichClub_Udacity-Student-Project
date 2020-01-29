@@ -1,11 +1,97 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="CustomChip" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="android:layout_width">@dimen/match_constraint_0dp</item>
+        <item name="android:layout_height">@dimen/chip_height</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="chipBackgroundColor">@android:color/transparent</item>
+        <item name="chipEndPadding">@dimen/chipEndPadding_8dp</item>
+        <item name="chipIcon">@drawable/ic_origin</item>
+        <item name="chipIconSize">@dimen/chipIconSize_20dp</item>
+        <item name="chipStrokeColor">@color/colorWhite</item>
+        <item name="chipStrokeWidth">@dimen/chipStrokeWidth_1dp</item>
+    </style>
+
+    <style name="sandwich_item_origin_imageView_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">@dimen/layout_marginEnd_8dp</item>
+        <item name="android:tint">@color/colorWhite</item>
+    </style>
+
+    <style name="sandwich_item_originName_textView_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-smallcaps</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5
+        </item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="sandwich_item_name_textView_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-smallcaps</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="sandwich_detail_name_textView_style">
+        <item name="android:layout_width">@dimen/match_constraint_0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/layout_margin_16dp</item>
+        <item name="android:fontFamily">sans-serif-smallcaps</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5
+        </item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="sandwich_detail_description_textView_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:padding">@dimen/text_padding_16dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="sandwich_detail_header_textView_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/layout_marginStart_16dp</item>
+        <item name="android:fontFamily">sans-serif-condensed-light</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="sandwich_detail_subHeader_textView_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/layout_marginTop_8dp</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="HorizontalDividerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/horizontal_divider_1dp</item>
+        <item name="android:layout_marginStart">@dimen/layout_marginStart_16dp</item>
+        <item name="android:layout_marginTop">@dimen/layout_marginTop_16dp</item>
+        <item name="android:layout_marginEnd">@dimen/layout_marginEnd_16dp</item>
+        <item name="android:background">@color/colorGrey</item>
     </style>
 
 </resources>

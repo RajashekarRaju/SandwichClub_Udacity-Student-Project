@@ -9,15 +9,21 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.developersbreach.sandwichclub.list.Sandwich;
 
-public class SandwichDetailFragmentViewModelFactory extends ViewModelProvider.AndroidViewModelFactory {
+/**
+ * A ViewModelFactory which is used to create a instance of {@link SandwichDetailFragmentViewModel}
+ * AndroidViewModel for fragment class {@link SandwichDetailFragment} with a constructor.
+ */
+class SandwichDetailFragmentViewModelFactory extends ViewModelProvider.AndroidViewModelFactory {
 
-    private Application mApplication;
-    private Sandwich mSandwich;
+    // Needs to to be passed as parameter for AndroidViewModel class.
+    private final Application mApplication;
+    private final Sandwich mSandwich;
 
     /**
      * Creates a {@code AndroidViewModelFactory}
      *
      * @param application an application to pass in {@link AndroidViewModel}
+     * @param sandwich    a user selected Sandwich object to pass in {@link AndroidViewModel}
      */
     SandwichDetailFragmentViewModelFactory(@NonNull Application application, Sandwich sandwich) {
         super(application);
@@ -25,6 +31,11 @@ public class SandwichDetailFragmentViewModelFactory extends ViewModelProvider.An
         this.mSandwich = sandwich;
     }
 
+    /**
+     * @param modelClass to check if our {@link SandwichDetailFragmentViewModel} model class is assignable.
+     * @param <T>        type of generic class
+     * @return returns the ViewModel class with passing parameters if instance is created.
+     */
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {

@@ -10,17 +10,19 @@
         android:id="@+id/sandwichListFragment"
         android:name="com.developersbreach.sandwichclub.list.SandwichListFragment"
         android:label="Sandwich's"
-        tools:layout="@layout/fragment_sandwich_list" >
+        tools:layout="@layout/fragment_sandwich_list">
         <action
             android:id="@+id/action_sandwichListFragment_to_sandwichDetailFragment"
-            app:destination="@id/sandwichDetailFragment" />
+            app:destination="@id/sandwichDetailFragment"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
 
     <fragment
         android:id="@+id/sandwichDetailFragment"
         android:name="com.developersbreach.sandwichclub.detail.SandwichDetailFragment"
         android:label="Sandwich Detail"
-        tools:layout="@layout/fragment_sandwich_detail" >
+        tools:layout="@layout/fragment_sandwich_detail">
         <argument
             android:name="sandwichDetailArgs"
             app:argType="com.developersbreach.sandwichclub.list.Sandwich" />
