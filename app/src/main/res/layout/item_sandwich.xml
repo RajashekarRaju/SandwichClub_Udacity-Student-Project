@@ -1,68 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/layout_margin_16dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/sandwich_origin_item_image_view"
-        style="@style/sandwich_item_origin_imageView_style"
-        android:src="@drawable/ic_origin"
-        app:layout_constraintBottom_toBottomOf="@id/sandwich_origin_item_text_view"
-        app:layout_constraintEnd_toStartOf="@id/sandwich_origin_item_text_view"
-        app:layout_constraintTop_toTopOf="@id/sandwich_origin_item_text_view"
-        tools:ignore="ContentDescription" />
+    <data>
 
-    <TextView
-        android:id="@+id/sandwich_origin_item_text_view"
-        style="@style/sandwich_item_originName_textView_style"
-        android:text="@string/origin"
-        app:layout_constraintBottom_toTopOf="@id/material_card_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <import type="android.view.View" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/material_card_view"
+        <variable
+            name="sandwich"
+            type="com.developersbreach.sandwichclub.list.Sandwich" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/layout_marginTop_8dp"
-        app:layout_constraintTop_toBottomOf="@id/sandwich_origin_item_text_view">
+        android:layout_margin="@dimen/layout_margin_16dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+            android:id="@+id/sandwich_origin_item_image_view"
+            style="@style/sandwich_item_origin_imageView_style"
+            android:src="@drawable/ic_origin"
+            android:visibility='@{sandwich.sandwichPlaceOfOrigin.equals("") ? View.GONE : View.VISIBLE}'
+            app:layout_constraintBottom_toBottomOf="@id/sandwich_origin_item_text_view"
+            app:layout_constraintEnd_toStartOf="@id/sandwich_origin_item_text_view"
+            app:layout_constraintTop_toTopOf="@id/sandwich_origin_item_text_view"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/sandwich_origin_item_text_view"
+            style="@style/sandwich_item_originName_textView_style"
+            sandwichOriginName="@{sandwich.sandwichPlaceOfOrigin}"
+            app:layout_constraintBottom_toTopOf="@id/material_card_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/material_card_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_marginTop_8dp"
+            app:layout_constraintTop_toBottomOf="@id/sandwich_origin_item_text_view">
 
-            <ImageView
-                android:id="@+id/sandwich_image_item_view"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/sandwich_main_image_height"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
+                android:layout_height="match_parent">
 
-            <View
-                android:id="@+id/sandwich_back_ground_view"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/text_bg_view_height"
-                android:background="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="@id/sandwich_image_item_view"
-                app:layout_constraintStart_toStartOf="@id/sandwich_image_item_view"
-                app:layout_constraintTop_toBottomOf="@id/sandwich_image_item_view" />
+                <ImageView
+                    android:id="@+id/sandwich_image_item_view"
+                    sandwichImage="@{sandwich.sandwichImage}"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sandwich_main_image_height"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
 
-            <TextView
-                android:id="@+id/sandwich_name_item_text_view"
-                style="@style/sandwich_item_name_textView_style"
-                android:layout_marginStart="@dimen/layout_marginStart_16dp"
-                app:layout_constraintBottom_toBottomOf="@id/sandwich_back_ground_view"
-                app:layout_constraintStart_toStartOf="@id/sandwich_back_ground_view"
-                app:layout_constraintTop_toTopOf="@id/sandwich_back_ground_view"
-                tools:text="Sandwich" />
+                <View
+                    android:id="@+id/sandwich_back_ground_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/text_bg_view_height"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="@id/sandwich_image_item_view"
+                    app:layout_constraintStart_toStartOf="@id/sandwich_image_item_view"
+                    app:layout_constraintTop_toBottomOf="@id/sandwich_image_item_view" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/sandwich_name_item_text_view"
+                    style="@style/sandwich_item_name_textView_style"
+                    sandwichName="@{sandwich.sandwichName}"
+                    android:layout_marginStart="@dimen/layout_marginStart_16dp"
+                    app:layout_constraintBottom_toBottomOf="@id/sandwich_back_ground_view"
+                    app:layout_constraintStart_toStartOf="@id/sandwich_back_ground_view"
+                    app:layout_constraintTop_toTopOf="@id/sandwich_back_ground_view"
+                    tools:text="Sandwich" />
 
-    </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
